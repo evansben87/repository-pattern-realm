@@ -1,0 +1,6 @@
+framework module Pods_RepositoryPatternRealm {
+  umbrella header "Pods-RepositoryPatternRealm-umbrella.h"
+
+  export *
+  module * { export * }
+}
