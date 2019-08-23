@@ -21,8 +21,14 @@ class RealmRepository: Repository {
         realm = try! Realm()
     }
     
-    func getAll<T: Storable>() -> [T] {
-        return realm.objects(T.self as! Object.Type).compactMap { $0 as? T }
+    func getAll<T: Storable>(where predicate: NSPredicate?) -> [T] {
+        var objects = realm.objects(T.self as! Object.Type)
+        
+        if let predicate = predicate {
+            objects = objects.filter(predicate)
+        }
+        
+        return objects.compactMap { $0 as? T }
     }
     
     func insert(item: Storable) throws {
