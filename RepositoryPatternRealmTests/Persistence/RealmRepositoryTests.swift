@@ -8,6 +8,7 @@
 
 import XCTest
 import RealmSwift
+@testable import RepositoryPatternRealm
 
 class RealmRepositoryTests: XCTestCase {
 
@@ -20,18 +21,61 @@ class RealmRepositoryTests: XCTestCase {
     }
 
     func test_insert_stores_item_locally() {
+        let article = Article()
+        article.price = 149
+        article.name = "Apple Airpods"
+        let repository = RealmRepository()
+        
+        try! repository.insert(item: article)
+        let savedItems: [Article] = repository.getAll()
+        
+        XCTAssertEqual(1, savedItems.count)
+    }
 
-    }
-    
-    func test_getAll_retrieves_all_items() {
-        
-    }
-    
     func test_update_updates_item() {
+        let article = Article()
+        article.price = 149
+        article.name = "Apple Airpods"
+        let repository = RealmRepository()
+        try! repository.insert(item: article)
         
+        try! repository.update {
+            article.name = "Apple Airpods 2"
+        }
+        
+        let savedItems: [Article] = repository.getAll()
+        
+        XCTAssertEqual("Apple Airpods 2", savedItems.first!.name)
     }
     
     func test_delete_removes_item() {
+        let article = Article()
+        article.price = 149
+        article.name = "Apple Airpods"
+        let repository = RealmRepository()
+        try! repository.insert(item: article)
         
+        try! repository.delete(item: article)
+        
+        let savedItems: [Article] = repository.getAll()
+        
+        XCTAssertEqual(0, savedItems.count)
+    }
+    
+    func test_getAll_filters_items() {
+        let article = Article()
+        article.price = 149
+        article.name = "Apple Airpods"
+        
+        let article2 = Article()
+        article2.price = 178
+        article2.name = "Apple Airpods 2"
+        let repository = RealmRepository()
+        try! repository.insert(item: article)
+        try! repository.insert(item: article2)
+
+        let savedItems: [Article] = repository.getAll(where: NSPredicate(format: "name = %@", article2.name))
+        
+        XCTAssertEqual(1, savedItems.count)
     }
 }
