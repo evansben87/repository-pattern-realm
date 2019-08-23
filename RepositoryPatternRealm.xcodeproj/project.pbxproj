@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B8C47775EB8756BA7EEAB73 /* Pods_RepositoryPatternRealm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173C5D9B3BB34F88550441CB /* Pods_RepositoryPatternRealm.framework */; };
+		C8030AF823106DBA00840087 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8030AF723106DBA00840087 /* Article.swift */; };
 		C8991F87230EBD9E0090D09D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8991F86230EBD9E0090D09D /* Repository.swift */; };
-		C8991F89230EBE9E0090D09D /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8991F88230EBE9E0090D09D /* Entity.swift */; };
 		C8991F8B230EBED70090D09D /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8991F8A230EBED70090D09D /* RealmRepository.swift */; };
 		C8A81D83230EB2D6005BECC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A81D82230EB2D6005BECC3 /* AppDelegate.swift */; };
 		C8A81D85230EB2D6005BECC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A81D84230EB2D6005BECC3 /* ViewController.swift */; };
@@ -33,8 +33,8 @@
 		173C5D9B3BB34F88550441CB /* Pods_RepositoryPatternRealm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RepositoryPatternRealm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F05D467942E439B61EABC1 /* Pods-RepositoryPatternRealm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepositoryPatternRealm.debug.xcconfig"; path = "Target Support Files/Pods-RepositoryPatternRealm/Pods-RepositoryPatternRealm.debug.xcconfig"; sourceTree = "<group>"; };
 		8E9BD65038827F2CEFBC07B8 /* Pods-RepositoryPatternRealm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepositoryPatternRealm.release.xcconfig"; path = "Target Support Files/Pods-RepositoryPatternRealm/Pods-RepositoryPatternRealm.release.xcconfig"; sourceTree = "<group>"; };
+		C8030AF723106DBA00840087 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		C8991F86230EBD9E0090D09D /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		C8991F88230EBE9E0090D09D /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		C8991F8A230EBED70090D09D /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		C8A81D7F230EB2D6005BECC3 /* RepositoryPatternRealm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepositoryPatternRealm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A81D82230EB2D6005BECC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +84,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C8030AF623106DA800840087 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C8030AF723106DBA00840087 /* Article.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C8991F82230EBD2A0090D09D /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +104,9 @@
 		C8991F83230EBD4B0090D09D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C8991F85230EBD7A0090D09D /* Persistence */,
 				C8991F84230EBD550090D09D /* Assets */,
+				C8030AF623106DA800840087 /* Models */,
+				C8991F85230EBD7A0090D09D /* Persistence */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -114,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				C8991F86230EBD9E0090D09D /* Repository.swift */,
-				C8991F88230EBE9E0090D09D /* Entity.swift */,
 				C8991F8A230EBED70090D09D /* RealmRepository.swift */,
 			);
 			path = Persistence;
@@ -307,10 +315,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8991F8B230EBED70090D09D /* RealmRepository.swift in Sources */,
-				C8991F89230EBE9E0090D09D /* Entity.swift in Sources */,
 				C8A81D85230EB2D6005BECC3 /* ViewController.swift in Sources */,
 				C8A81D83230EB2D6005BECC3 /* AppDelegate.swift in Sources */,
 				C8991F87230EBD9E0090D09D /* Repository.swift in Sources */,
+				C8030AF823106DBA00840087 /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

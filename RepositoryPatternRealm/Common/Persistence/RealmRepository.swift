@@ -9,9 +9,11 @@
 import Foundation
 import RealmSwift
 
-// A RealmRepository that implements the Repository protocol on top of Realm
-class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityType: Entity {
-    typealias RealmEntityType = T
+
+extension Object: Storable {
+}
+
+class RealmRepository: Repository {
     
     private let realm: Realm
     
@@ -19,19 +21,26 @@ class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityTy
         realm = try! Realm()
     }
     
-    func getAll() -> [T.EntityType] {
-        return realm.objects(T.self).compactMap { $0.entity }
+    func getAll<T: Storable>() -> [T] {
+        return realm.objects(T.self as! Object.Type).compactMap { $0 as? T }
     }
     
-    func save(item: T.EntityType) {
-        try? realm.write {
-            realm.add(RealmEntityType(item))
+    func insert(item: Storable) throws {
+        try realm.write {
+            realm.add(item as! Object)
         }
     }
-
-    func delete(item: T.EntityType) {
-        try? realm.write {
-            realm.delete(RealmEntityType(item))
+    
+    func update(block: @escaping () -> Void) throws {
+        try realm.write {
+            block()
+        }
+    }
+    
+    func delete(item: Storable) throws {
+        try realm.write {
+            realm.delete(item as! Object)
         }
     }
 }
+
