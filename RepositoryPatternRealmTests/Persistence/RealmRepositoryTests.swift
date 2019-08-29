@@ -19,12 +19,12 @@ class RealmRepositoryTests: XCTestCase {
         // there's nothing that needs to be cleaned up.
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
     }
-
+    
     func test_insert_stores_item_locally() {
         let article = Article()
         article.price = 149
         article.name = "Apple Airpods"
-        let repository = RealmRepository()
+        let repository = createRepository()
         
         try! repository.insert(item: article)
         let savedItems: [Article] = repository.getAll()
@@ -36,7 +36,7 @@ class RealmRepositoryTests: XCTestCase {
         let article = Article()
         article.price = 149
         article.name = "Apple Airpods"
-        let repository = RealmRepository()
+        let repository = createRepository()
         try! repository.insert(item: article)
         
         try! repository.update {
@@ -52,7 +52,7 @@ class RealmRepositoryTests: XCTestCase {
         let article = Article()
         article.price = 149
         article.name = "Apple Airpods"
-        let repository = RealmRepository()
+        let repository = createRepository()
         try! repository.insert(item: article)
         
         try! repository.delete(item: article)
@@ -70,12 +70,16 @@ class RealmRepositoryTests: XCTestCase {
         let article2 = Article()
         article2.price = 178
         article2.name = "Apple Airpods 2"
-        let repository = RealmRepository()
+        let repository = createRepository()
         try! repository.insert(item: article)
         try! repository.insert(item: article2)
 
         let savedItems: [Article] = repository.getAll(where: NSPredicate(format: "name = %@", article2.name))
         
         XCTAssertEqual(1, savedItems.count)
+    }
+    
+    private func createRepository() -> Repository {
+        return RealmRepository()
     }
 }
