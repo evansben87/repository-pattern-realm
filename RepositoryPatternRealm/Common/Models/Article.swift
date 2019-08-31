@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Article: Object {
-    @objc dynamic var price: Double = 0.0
-    @objc dynamic var name: String = ""
+struct Article {
+    var price: Double
+    var name: String
 }

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let viewModel = ArticleViewModel(with: RealmRepository())
+        let viewModel = ArticleViewModel(with: AnyRepository())
         
         viewModel.testRepository()
     }
@@ -22,27 +22,25 @@ class ViewController: UIViewController {
 
 
 class ArticleViewModel {
-    
-    private let repository: Repository
-    
-    init(with repo: Repository) {
+
+    private let repository: AnyRepository<Article>
+
+    init(with repo: AnyRepository<Article>) {
         repository = repo
     }
-    
+
     func testRepository() {
-        let article = Article()
-        article.price = 12
-        article.name = "Apple Airpods"
+        var article = Article(price: 12, name: "Apple Airpods")
         //insert article
         try? repository.insert(item: article)
         //get all articles
         let items: [Article] = repository.getAll()
-        
+
         print("Number of saved items: \(items.count)")
         //update
-        try? repository.update {
-            article.name = "Apple Airpods 2"
-            }
+        article.name = "Apple Airpods 2"
+        
+        try? repository.update(item: article)
     }
 }
 

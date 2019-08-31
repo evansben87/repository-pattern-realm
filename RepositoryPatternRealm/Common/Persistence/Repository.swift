@@ -9,16 +9,29 @@
 import Foundation
 
 protocol Repository {
-    func getAll<T: Storable>(where predicate: NSPredicate?) -> [T]
-    func insert(item: Storable) throws
-    func update(block: @escaping () -> ()) throws
-    func delete(item: Storable) throws
+    associatedtype EntityObject: Entity
+    
+    func getAll(where predicate: NSPredicate?) -> [EntityObject]
+    func insert(item: EntityObject) throws
+    func update(item: EntityObject) throws
+    func delete(item: EntityObject) throws
 }
 
 extension Repository {
-    func getAll<T: Storable>() -> [T] {
+    func getAll() -> [EntityObject] {
         return getAll(where: nil)
     }
 }
 
-public protocol Storable { }
+public protocol Entity {
+    associatedtype StoreType: Storable
+    
+    func toStorable() -> StoreType
+}
+
+public protocol Storable {
+    associatedtype EntityObject: Entity
+    
+    var entity: EntityObject { get }
+    var uuid: String { get }
+}
