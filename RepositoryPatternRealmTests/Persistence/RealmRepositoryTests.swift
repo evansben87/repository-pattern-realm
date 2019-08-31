@@ -21,10 +21,11 @@ class RealmRepositoryTests: XCTestCase {
     }
     
     func test_insert_stores_item_locally() {
-        let article = Article()
+        let repository = CoreDataRepository(persistentContainer: CoreDataHelper.fakePersistentContainer)
+        let article = Article(context: repository.backgroundContext)
         article.price = 149
         article.name = "Apple Airpods"
-        let repository = createRepository()
+        
         
         try! repository.insert(item: article)
         let savedItems: [Article] = repository.getAll()
@@ -80,6 +81,6 @@ class RealmRepositoryTests: XCTestCase {
     }
     
     private func createRepository() -> Repository {
-        return RealmRepository()
+        return CoreDataRepository(persistentContainer: CoreDataHelper.fakePersistentContainer)
     }
 }

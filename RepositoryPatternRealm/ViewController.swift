@@ -14,9 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let viewModel = ArticleViewModel(with: RealmRepository())
+        //let viewModel = ArticleViewModel(with: RealmRepository())
         
-        viewModel.testRepository()
+        //viewModel.testRepository()
     }
 }
 

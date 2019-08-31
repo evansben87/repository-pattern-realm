@@ -7,9 +7,14 @@
 //
 
 import Foundation
-import RealmSwift
+import CoreData
 
-class Article: Object {
-    @objc dynamic var price: Double = 0.0
-    @objc dynamic var name: String = ""
+@objc(Article)
+public class Article: NSManagedObject {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Article> {
+        return NSFetchRequest<Article>(entityName: "Article")
+    }
+    
+    @NSManaged public var name: String
+    @NSManaged public var price: Double
 }

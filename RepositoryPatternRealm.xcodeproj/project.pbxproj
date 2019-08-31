@@ -18,6 +18,9 @@
 		C8A81D88230EB2D6005BECC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A81D86230EB2D6005BECC3 /* Main.storyboard */; };
 		C8A81D8A230EB2D8005BECC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A81D89230EB2D8005BECC3 /* Assets.xcassets */; };
 		C8A81D8D230EB2D8005BECC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A81D8B230EB2D8005BECC3 /* LaunchScreen.storyboard */; };
+		C8C924BD231A7DA7003F4583 /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C924BC231A7DA7003F4583 /* CoreDataRepository.swift */; };
+		C8C924E0231A9D0C003F4583 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C924DF231A9D0C003F4583 /* CoreDataHelper.swift */; };
+		C8C924E3231A9DEA003F4583 /* RepositoryRealm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8C924E1231A9DEA003F4583 /* RepositoryRealm.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		C8A81D8E230EB2D8005BECC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A81D93230EB2D8005BECC3 /* RepositoryPatternRealmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryPatternRealmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A81D99230EB2D8005BECC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8C924BC231A7DA7003F4583 /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
+		C8C924DF231A9D0C003F4583 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Persistence/CoreDataHelper.swift; sourceTree = "<group>"; };
+		C8C924E2231A9DEA003F4583 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		EAEC39C26D332F40876F6C10 /* Pods-RepositoryPatternRealmTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepositoryPatternRealmTests.release.xcconfig"; path = "Target Support Files/Pods-RepositoryPatternRealmTests/Pods-RepositoryPatternRealmTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C8030AF723106DBA00840087 /* Article.swift */,
+				C8C924E1231A9DEA003F4583 /* RepositoryRealm.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -132,6 +139,7 @@
 			children = (
 				C8991F86230EBD9E0090D09D /* Repository.swift */,
 				C8991F8A230EBED70090D09D /* RealmRepository.swift */,
+				C8C924BC231A7DA7003F4583 /* CoreDataRepository.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 			children = (
 				C8A81D99230EB2D8005BECC3 /* Info.plist */,
 				C8030AF923107C0800840087 /* RealmRepositoryTests.swift */,
+				C8C924DF231A9D0C003F4583 /* CoreDataHelper.swift */,
 			);
 			path = RepositoryPatternRealmTests;
 			sourceTree = "<group>";
@@ -367,7 +376,9 @@
 				C8991F8B230EBED70090D09D /* RealmRepository.swift in Sources */,
 				C8A81D85230EB2D6005BECC3 /* ViewController.swift in Sources */,
 				C8A81D83230EB2D6005BECC3 /* AppDelegate.swift in Sources */,
+				C8C924E3231A9DEA003F4583 /* RepositoryRealm.xcdatamodeld in Sources */,
 				C8991F87230EBD9E0090D09D /* Repository.swift in Sources */,
+				C8C924BD231A7DA7003F4583 /* CoreDataRepository.swift in Sources */,
 				C8030AF823106DBA00840087 /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C924E0231A9D0C003F4583 /* CoreDataHelper.swift in Sources */,
 				C8030AFA23107C0800840087 /* RealmRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -642,6 +654,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C8C924E1231A9DEA003F4583 /* RepositoryRealm.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C8C924E2231A9DEA003F4583 /* Model.xcdatamodel */,
+			);
+			currentVersion = C8C924E2231A9DEA003F4583 /* Model.xcdatamodel */;
+			path = RepositoryRealm.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C8A81D77230EB2D6005BECC3 /* Project object */;
 }
