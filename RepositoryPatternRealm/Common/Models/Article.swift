@@ -7,14 +7,9 @@
 //
 
 import Foundation
-import CoreData
+import RealmSwift
 
-@objc(Article)
-public class Article: NSManagedObject {
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Article> {
-        return NSFetchRequest<Article>(entityName: "Article")
-    }
-    
-    @NSManaged public var name: String
-    @NSManaged public var price: Double
+struct Article {
+    var price: Double
+    var name: String
 }

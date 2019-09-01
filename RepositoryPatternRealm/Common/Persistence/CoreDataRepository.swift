@@ -9,9 +9,7 @@
 import Foundation
 import CoreData
 
-extension NSManagedObject : Storable {}
-
-class CoreDataRepository : Repository {
+class CoreDataRepository {
     // MARK: - Core Data stack
     
     var persistentContainer: NSPersistentContainer
@@ -28,23 +26,23 @@ class CoreDataRepository : Repository {
         return getAllObjects(where: predicate) as! [T]
     }
     
-    func insert(item: Storable) throws {
-        guard item is NSManagedObject else { return }
-        
-        backgroundContext.insert(item as! NSManagedObject)
-        saveContext()
-    }
-    
-    func update(block: @escaping () -> ()) throws {
-        block()
-        saveContext()
-    }
-    
-    func delete(item: Storable) throws {
-        guard item is NSManagedObject else { return }
-        backgroundContext.delete(item as! NSManagedObject)
-        saveContext()
-    }
+//    func insert(item: Storable) throws {
+//        guard item is NSManagedObject else { return }
+//        
+//        backgroundContext.insert(item as! NSManagedObject)
+//        saveContext()
+//    }
+//    
+//    func update(block: @escaping () -> ()) throws {
+//        block()
+//        saveContext()
+//    }
+//    
+//    func delete(item: Storable) throws {
+//        guard item is NSManagedObject else { return }
+//        backgroundContext.delete(item as! NSManagedObject)
+//        saveContext()
+//    }
     
     // MARK: - Core Data Saving support
     
