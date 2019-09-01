@@ -9,26 +9,29 @@
 import Foundation
 import CoreData
 
-class CoreDataRepository<RepositoryObject: Entity>: Repository {
+class CoreDataRepository<RepositoryObject>: Repository
+        where RepositoryObject: Entity,
+        RepositoryObject.StoreType: NSManagedObject,
+        RepositoryObject.StoreType.EntityObject == RepositoryObject {
     // MARK: - Core Data stack
     
     var persistentContainer: NSPersistentContainer
-    
-    lazy var backgroundContext: NSManagedObjectContext = {
-        return self.persistentContainer.newBackgroundContext()
-    }()
-    
+
     init(persistentContainer: NSPersistentContainer) {
         self.persistentContainer = persistentContainer
     }
     
-    func getAll(where predicate: NSPredicate?) -> [RepositoryObject] {
-        return getAllObjects(where: predicate) as! [RepositoryObject]
+    func getAll(where predicate: NSPredicate?) throws -> [RepositoryObject] {
+        let entityName = String(describing: RepositoryObject.StoreType.self)
+        let request = NSFetchRequest<RepositoryObject.StoreType>(entityName: entityName)
+        request.predicate = predicate
+        
+        let objects = try persistentContainer.viewContext.fetch(request)
+        return objects.compactMap { $0.model }
     }
 
     func insert(item: RepositoryObject) throws {
-        guard item.toStorable(with: backgroundContext) is NSManagedObject else { return }
-        backgroundContext.insert(item as! NSManagedObject)
+        persistentContainer.viewContext.insert(item.toStorable(with: persistentContainer.viewContext))
         saveContext()
     }
     
@@ -38,21 +41,10 @@ class CoreDataRepository<RepositoryObject: Entity>: Repository {
     }
     
     func delete(item: RepositoryObject) throws {
-        guard item.toStorable(with: backgroundContext) is NSManagedObject else { return }
-        backgroundContext.delete(item as! NSManagedObject)
+        persistentContainer.viewContext.delete(item as! NSManagedObject)
         saveContext()
     }
     // MARK: - Core Data Saving support
-    
-    func getAllObjects<T: NSManagedObject>(where predicate: NSPredicate?) -> [T] {
-        let entityName = String(describing: T.self)
-        let request = NSFetchRequest<T>(entityName: entityName)
-        request.predicate = predicate
-        
-        let objects = try? persistentContainer.viewContext.fetch(request)
-        
-        return objects ?? [T]()
-    }
     
     private func saveContext() {
         let context = persistentContainer.viewContext
@@ -67,7 +59,7 @@ class CoreDataRepository<RepositoryObject: Entity>: Repository {
     }
 }
 
-struct PersistentContainerFactory {
+class PersistentContainerFactory {
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application.

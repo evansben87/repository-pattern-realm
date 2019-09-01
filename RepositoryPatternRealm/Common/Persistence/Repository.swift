@@ -12,15 +12,15 @@ import CoreData
 protocol Repository {
     associatedtype EntityObject: Entity
     
-    func getAll(where predicate: NSPredicate?) -> [EntityObject]
+    func getAll(where predicate: NSPredicate?) throws -> [EntityObject]
     func insert(item: EntityObject) throws
     func update(item: EntityObject) throws
     func delete(item: EntityObject) throws
 }
 
 extension Repository {
-    func getAll() -> [EntityObject] {
-        return getAll(where: nil)
+    func getAll() throws -> [EntityObject] {
+        return try getAll(where: nil)
     }
 }
 
