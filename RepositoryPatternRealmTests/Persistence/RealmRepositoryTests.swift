@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import RealmSwift
+import CoreData
 @testable import RepositoryPatternRealm
 
 class RealmRepositoryTests: XCTestCase {
@@ -17,7 +17,7 @@ class RealmRepositoryTests: XCTestCase {
         // This ensures that each test can't accidentally access or modify the data
         // from other tests or the application itself, and because they're in-memory,
         // there's nothing that needs to be cleaned up.
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
+        //Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
     }
     
     func test_insert_stores_item_locally() {
@@ -70,7 +70,7 @@ class RealmRepositoryTests: XCTestCase {
         XCTAssertEqual(1, savedItems.count)
     }
     
-    private func createRepository() -> AnyRepository<Article> {
-        return AnyRepository()
+    private func createRepository() -> CoreDataRepository<Article> {
+        return CoreDataRepository(persistentContainer: CoreDataHelper.fakePersistentContainer)
     }
 }

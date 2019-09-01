@@ -11,6 +11,9 @@
 		8CD1A309101595DEFD5D8BF1 /* Pods_RepositoryPatternRealmTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D94E179DC100CA52BAA3BC /* Pods_RepositoryPatternRealmTests.framework */; };
 		C8030AF823106DBA00840087 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8030AF723106DBA00840087 /* Article.swift */; };
 		C8030AFA23107C0800840087 /* RealmRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8030AF923107C0800840087 /* RealmRepositoryTests.swift */; };
+		C81200B1231BC7DC0053E3E0 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C81200AF231BC7DC0053E3E0 /* Model.xcdatamodeld */; };
+		C81200B4231BC8790053E3E0 /* CDArticle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81200B2231BC8790053E3E0 /* CDArticle+CoreDataProperties.swift */; };
+		C81200B5231BC8790053E3E0 /* CDArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81200B3231BC8790053E3E0 /* CDArticle+CoreDataClass.swift */; };
 		C8221206231B13A8006BD0DD /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8221205231B13A8006BD0DD /* CoreDataRepository.swift */; };
 		C8221208231B13C5006BD0DD /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8221207231B13C5006BD0DD /* CoreDataHelper.swift */; };
 		C8991F87230EBD9E0090D09D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8991F86230EBD9E0090D09D /* Repository.swift */; };
@@ -41,6 +44,9 @@
 		C1D94E179DC100CA52BAA3BC /* Pods_RepositoryPatternRealmTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RepositoryPatternRealmTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8030AF723106DBA00840087 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		C8030AF923107C0800840087 /* RealmRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmRepositoryTests.swift; path = Persistence/RealmRepositoryTests.swift; sourceTree = "<group>"; };
+		C81200B0231BC7DC0053E3E0 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C81200B2231BC8790053E3E0 /* CDArticle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDArticle+CoreDataProperties.swift"; path = "/Users/kristijankralj/Documents/blog/repository-pattern-realm/RepositoryPatternRealm/Common/Persistence/CDArticle+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		C81200B3231BC8790053E3E0 /* CDArticle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDArticle+CoreDataClass.swift"; path = "/Users/kristijankralj/Documents/blog/repository-pattern-realm/RepositoryPatternRealm/Common/Persistence/CDArticle+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		C8221205231B13A8006BD0DD /* CoreDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
 		C8221207231B13C5006BD0DD /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Persistence/CoreDataHelper.swift; sourceTree = "<group>"; };
 		C8991F86230EBD9E0090D09D /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -136,10 +142,13 @@
 		C8991F85230EBD7A0090D09D /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				C81200B3231BC8790053E3E0 /* CDArticle+CoreDataClass.swift */,
+				C81200B2231BC8790053E3E0 /* CDArticle+CoreDataProperties.swift */,
 				C8221205231B13A8006BD0DD /* CoreDataRepository.swift */,
 				C8C924E4231B0F08003F4583 /* StorableArticle.swift */,
 				C8991F86230EBD9E0090D09D /* Repository.swift */,
 				C8991F8A230EBED70090D09D /* AnyRepository.swift */,
+				C81200AF231BC7DC0053E3E0 /* Model.xcdatamodeld */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -375,7 +384,10 @@
 			files = (
 				C8991F8B230EBED70090D09D /* AnyRepository.swift in Sources */,
 				C8A81D85230EB2D6005BECC3 /* ViewController.swift in Sources */,
+				C81200B4231BC8790053E3E0 /* CDArticle+CoreDataProperties.swift in Sources */,
 				C8A81D83230EB2D6005BECC3 /* AppDelegate.swift in Sources */,
+				C81200B1231BC7DC0053E3E0 /* Model.xcdatamodeld in Sources */,
+				C81200B5231BC8790053E3E0 /* CDArticle+CoreDataClass.swift in Sources */,
 				C8991F87230EBD9E0090D09D /* Repository.swift in Sources */,
 				C8C924E5231B0F09003F4583 /* StorableArticle.swift in Sources */,
 				C8030AF823106DBA00840087 /* Article.swift in Sources */,
@@ -654,6 +666,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C81200AF231BC7DC0053E3E0 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C81200B0231BC7DC0053E3E0 /* Model.xcdatamodel */,
+			);
+			currentVersion = C81200B0231BC7DC0053E3E0 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C8A81D77230EB2D6005BECC3 /* Project object */;
 }

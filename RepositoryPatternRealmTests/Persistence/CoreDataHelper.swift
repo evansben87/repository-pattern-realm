@@ -17,7 +17,7 @@ class CoreDataHelper {
     
     static let fakePersistentContainer: NSPersistentContainer = {
         
-        let container = NSPersistentContainer(name: "RepositoryRealm", managedObjectModel: CoreDataHelper.managedObjectModel)
+        let container = NSPersistentContainer(name: "Model", managedObjectModel: CoreDataHelper.managedObjectModel)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false // Make it simpler in test env

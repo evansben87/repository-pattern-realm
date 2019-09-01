@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-struct Article {
+public struct Article {
     var price: Double
     var name: String
 }

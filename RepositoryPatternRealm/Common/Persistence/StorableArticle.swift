@@ -7,32 +7,27 @@
 //
 
 import Foundation
-import RealmSwift
+import CoreData
 
 extension Article: Entity {
-    private var storableArticle: StorableArticle {
-        let realmArticle = StorableArticle()
-        realmArticle.name = name
-        realmArticle.price = price
-        realmArticle.uuid = name
-        return realmArticle
-    }
-    
-    func toStorable() -> StorableArticle {
-        return storableArticle
+    public func toStorable(with context: NSManagedObjectContext) -> CDArticle {
+        
+        let coreDataArticle = CDArticle(context: context)
+        coreDataArticle.name = name
+        coreDataArticle.price = price
+        return coreDataArticle
     }
 }
 
-class StorableArticle: Object, Storable {
-    
-    @objc dynamic var price: Double = 0.0
-    @objc dynamic var name: String = ""
-    @objc dynamic var uuid: String = ""
-    
-    var entity: Article
+extension CDArticle: Storable {
+    public var uuid: String {
+        return name!
+    }
+
+    public var model: Article
     {
         get {
-            return Article(price: price, name: name)
+            return Article(price: price, name: name ?? "")
         }
     }
 }

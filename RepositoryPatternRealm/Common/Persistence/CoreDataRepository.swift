@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class CoreDataRepository {
+class CoreDataRepository<RepositoryObject: Entity>: Repository {
     // MARK: - Core Data stack
     
     var persistentContainer: NSPersistentContainer
@@ -22,28 +22,26 @@ class CoreDataRepository {
         self.persistentContainer = persistentContainer
     }
     
-    func getAll<T>(where predicate: NSPredicate?) -> [T] where T : Storable {
-        return getAllObjects(where: predicate) as! [T]
+    func getAll(where predicate: NSPredicate?) -> [RepositoryObject] {
+        return getAllObjects(where: predicate) as! [RepositoryObject]
+    }
+
+    func insert(item: RepositoryObject) throws {
+        guard item.toStorable(with: backgroundContext) is NSManagedObject else { return }
+        backgroundContext.insert(item as! NSManagedObject)
+        saveContext()
     }
     
-//    func insert(item: Storable) throws {
-//        guard item is NSManagedObject else { return }
-//        
-//        backgroundContext.insert(item as! NSManagedObject)
-//        saveContext()
-//    }
-//    
-//    func update(block: @escaping () -> ()) throws {
-//        block()
-//        saveContext()
-//    }
-//    
-//    func delete(item: Storable) throws {
-//        guard item is NSManagedObject else { return }
-//        backgroundContext.delete(item as! NSManagedObject)
-//        saveContext()
-//    }
+    func update(item: RepositoryObject) throws {
+        try? delete(item: item)
+        try? insert(item: item)
+    }
     
+    func delete(item: RepositoryObject) throws {
+        guard item.toStorable(with: backgroundContext) is NSManagedObject else { return }
+        backgroundContext.delete(item as! NSManagedObject)
+        saveContext()
+    }
     // MARK: - Core Data Saving support
     
     func getAllObjects<T: NSManagedObject>(where predicate: NSPredicate?) -> [T] {
@@ -54,7 +52,6 @@ class CoreDataRepository {
         let objects = try? persistentContainer.viewContext.fetch(request)
         
         return objects ?? [T]()
-        //try persistentContainer.viewContext
     }
     
     private func saveContext() {
@@ -75,7 +72,7 @@ struct PersistentContainerFactory {
         /*
          The persistent container for the application.
          */
-        let container = NSPersistentContainer(name: "RepositoryPattern")
+        let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

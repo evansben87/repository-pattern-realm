@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol Repository {
     associatedtype EntityObject: Entity
@@ -26,12 +27,12 @@ extension Repository {
 public protocol Entity {
     associatedtype StoreType: Storable
     
-    func toStorable() -> StoreType
+    func toStorable(with context: NSManagedObjectContext) -> StoreType
 }
 
 public protocol Storable {
     associatedtype EntityObject: Entity
     
-    var entity: EntityObject { get }
+    var model: EntityObject { get }
     var uuid: String { get }
 }
