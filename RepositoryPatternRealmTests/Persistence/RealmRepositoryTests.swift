@@ -12,22 +12,14 @@ import CoreData
 
 class RealmRepositoryTests: XCTestCase {
 
-    override func setUp() {
-        // Use an in-memory Realm identified by the name of the current test.
-        // This ensures that each test can't accidentally access or modify the data
-        // from other tests or the application itself, and because they're in-memory,
-        // there's nothing that needs to be cleaned up.
-        //Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
-    }
-    
     func test_insert_stores_item_locally() {
         let article = Article(price: 149, name: "Apple Airpods")
         let repository = createRepository()
         
         try! repository.insert(item: article)
-//        let savedItems: [Article] = repository.getAll()
-//        
-//        XCTAssertEqual(1, savedItems.count)
+        let savedItems: [Article] = try! repository.getAll()
+        
+        XCTAssertEqual(1, savedItems.count)
     }
 
     func test_update_updates_item() {
@@ -65,12 +57,12 @@ class RealmRepositoryTests: XCTestCase {
         try! repository.insert(item: article)
         try! repository.insert(item: article2)
 
-        let savedItems: [Article] = try! repository.getAll(where: NSPredicate(format: "name = %@", article2.name))
+        let savedItems: [Article] = try! repository.getAll(where: NSPredicate(format: "name == %@", article2.name))
         
         XCTAssertEqual(1, savedItems.count)
     }
     
     private func createRepository() -> CoreDataRepository<Article> {
-        return CoreDataRepository(persistentContainer: CoreDataHelper.fakePersistentContainer)
+        return CoreDataRepository(persistentContainer: CoreDataHelper().persistentContainer)
     }
 }

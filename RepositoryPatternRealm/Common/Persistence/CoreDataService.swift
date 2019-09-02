@@ -1,31 +1,19 @@
 //
-//  CoreDataHelper.swift
-//  RepositoryPatternRealmTests
+//  CoreDataService.swift
+//  RepositoryPatternRealm
 //
-//  Created by Kristijan Kralj on 31/08/2019.
+//  Created by Kristijan Kralj on 02/09/2019.
 //  Copyright © 2019 Kristijan Kralj. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-class CoreDataHelper {
-    static let managedObjectModel: NSManagedObjectModel = {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: CoreDataHelper()))] )!
-        return managedObjectModel
-    }()
+class CoreDataService {
     
-    static let shared = CoreDataHelper()
-    
+    static let shared = CoreDataService()
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Model")
-        
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
-        
-        container.persistentStoreDescriptions = [description]
-        
         container.loadPersistentStores(completionHandler: { [weak self](storeDescription, error) in
             if let error = error {
                 NSLog("CoreData error \(error), \(String(describing: error._userInfo))")

@@ -14,9 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        let viewModel = ArticleViewModel(with: CoreDataRepository(persistentContainer: PersistentContainerFactory().persistentContainer))
-//        
-//        viewModel.testRepository()
+       let viewModel = ArticleViewModel(with: CoreDataRepository(persistentContainer: CoreDataService.shared.persistentContainer))
+        
+        //viewModel.testRepository()
     }
 }
 
@@ -30,7 +30,7 @@ class ArticleViewModel {
     }
 
     func testRepository() {
-        var article = Article(price: 12, name: "Apple Airpods")
+        let article = Article(price: 4999, name: "Apple Monitor")
         //insert article
         try? repository.insert(item: article)
         //get all articles
@@ -38,7 +38,7 @@ class ArticleViewModel {
 
         print("Number of saved items: \(items.count)")
         //update
-        article.name = "Apple Airpods 2"
+        //article.name = "Apple Airpods 2"
         
         try? repository.update(item: article)
     }

@@ -17,6 +17,6 @@ extension CDArticle {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var uuid: String
     @NSManaged public var price: Double
-
 }

@@ -16,8 +16,8 @@
 		C81200B5231BC8790053E3E0 /* CDArticle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81200B3231BC8790053E3E0 /* CDArticle+CoreDataClass.swift */; };
 		C8221206231B13A8006BD0DD /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8221205231B13A8006BD0DD /* CoreDataRepository.swift */; };
 		C8221208231B13C5006BD0DD /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8221207231B13C5006BD0DD /* CoreDataHelper.swift */; };
+		C87FFC16231D59B1001F1BFA /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87FFC15231D59B1001F1BFA /* CoreDataService.swift */; };
 		C8991F87230EBD9E0090D09D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8991F86230EBD9E0090D09D /* Repository.swift */; };
-		C8991F8B230EBED70090D09D /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8991F8A230EBED70090D09D /* AnyRepository.swift */; };
 		C8A81D83230EB2D6005BECC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A81D82230EB2D6005BECC3 /* AppDelegate.swift */; };
 		C8A81D85230EB2D6005BECC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A81D84230EB2D6005BECC3 /* ViewController.swift */; };
 		C8A81D88230EB2D6005BECC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A81D86230EB2D6005BECC3 /* Main.storyboard */; };
@@ -49,8 +49,8 @@
 		C81200B3231BC8790053E3E0 /* CDArticle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CDArticle+CoreDataClass.swift"; path = "/Users/kristijankralj/Documents/blog/repository-pattern-realm/RepositoryPatternRealm/Common/Persistence/CDArticle+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		C8221205231B13A8006BD0DD /* CoreDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
 		C8221207231B13C5006BD0DD /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Persistence/CoreDataHelper.swift; sourceTree = "<group>"; };
+		C87FFC15231D59B1001F1BFA /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		C8991F86230EBD9E0090D09D /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		C8991F8A230EBED70090D09D /* AnyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRepository.swift; sourceTree = "<group>"; };
 		C8A81D7F230EB2D6005BECC3 /* RepositoryPatternRealm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepositoryPatternRealm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A81D82230EB2D6005BECC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8A81D84230EB2D6005BECC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 				C8221205231B13A8006BD0DD /* CoreDataRepository.swift */,
 				C8C924E4231B0F08003F4583 /* StorableArticle.swift */,
 				C8991F86230EBD9E0090D09D /* Repository.swift */,
-				C8991F8A230EBED70090D09D /* AnyRepository.swift */,
 				C81200AF231BC7DC0053E3E0 /* Model.xcdatamodeld */,
+				C87FFC15231D59B1001F1BFA /* CoreDataService.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -382,7 +382,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8991F8B230EBED70090D09D /* AnyRepository.swift in Sources */,
 				C8A81D85230EB2D6005BECC3 /* ViewController.swift in Sources */,
 				C81200B4231BC8790053E3E0 /* CDArticle+CoreDataProperties.swift in Sources */,
 				C8A81D83230EB2D6005BECC3 /* AppDelegate.swift in Sources */,
@@ -390,6 +389,7 @@
 				C81200B5231BC8790053E3E0 /* CDArticle+CoreDataClass.swift in Sources */,
 				C8991F87230EBD9E0090D09D /* Repository.swift in Sources */,
 				C8C924E5231B0F09003F4583 /* StorableArticle.swift in Sources */,
+				C87FFC16231D59B1001F1BFA /* CoreDataService.swift in Sources */,
 				C8030AF823106DBA00840087 /* Article.swift in Sources */,
 				C8221206231B13A8006BD0DD /* CoreDataRepository.swift in Sources */,
 			);

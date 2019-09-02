@@ -22,11 +22,7 @@ class CoreDataRepository<RepositoryObject>: Repository
     }
     
     func getAll(where predicate: NSPredicate?) throws -> [RepositoryObject] {
-        let entityName = String(describing: RepositoryObject.StoreType.self)
-        let request = NSFetchRequest<RepositoryObject.StoreType>(entityName: entityName)
-        request.predicate = predicate
-        
-        let objects = try persistentContainer.viewContext.fetch(request)
+        let objects = try! getManagedObjects(with: predicate)
         return objects.compactMap { $0.model }
     }
 
@@ -41,9 +37,21 @@ class CoreDataRepository<RepositoryObject>: Repository
     }
     
     func delete(item: RepositoryObject) throws {
-        persistentContainer.viewContext.delete(item as! NSManagedObject)
+        let predicate = NSPredicate(format: "uuid == %@", item.toStorable(with: persistentContainer.viewContext).uuid)
+        let items = try! getManagedObjects(with: predicate)
+
+        persistentContainer.viewContext.delete(items.first!)
         saveContext()
     }
+    
+    private func getManagedObjects(with predicate: NSPredicate?) throws -> [RepositoryObject.StoreType] {
+        let entityName = String(describing: RepositoryObject.StoreType.self)
+        let request = NSFetchRequest<RepositoryObject.StoreType>(entityName: entityName)
+        request.predicate = predicate
+        
+        return try persistentContainer.viewContext.fetch(request)
+    }
+    
     // MARK: - Core Data Saving support
     
     private func saveContext() {
@@ -57,19 +65,4 @@ class CoreDataRepository<RepositoryObject>: Repository
             }
         }
     }
-}
-
-class PersistentContainerFactory {
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application.
-         */
-        let container = NSPersistentContainer(name: "Model")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
 }

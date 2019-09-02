@@ -3,8 +3,9 @@
     <entity name="CDArticle" representedClassName="CDArticle" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDArticle" positionX="-36" positionY="9" width="128" height="75"/>
+        <element name="CDArticle" positionX="-36" positionY="9" width="128" height="90"/>
     </elements>
 </model>
