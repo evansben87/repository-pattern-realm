@@ -10,8 +10,7 @@ import Foundation
 import CoreData
 
 extension Article: Entity {
-    public func toStorable(with context: NSManagedObjectContext) -> CDArticle {
-        
+    public func toStorable(in context: NSManagedObjectContext) -> CDArticle {
         let coreDataArticle = CDArticle.getOrCreateSingle(with: name, from: context)
         coreDataArticle.name = name
         coreDataArticle.uuid = name

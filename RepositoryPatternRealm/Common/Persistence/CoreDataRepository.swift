@@ -13,8 +13,7 @@ class CoreDataRepository<RepositoryObject>: Repository
         where RepositoryObject: Entity,
         RepositoryObject.StoreType: NSManagedObject,
         RepositoryObject.StoreType.EntityObject == RepositoryObject {
-    // MARK: - Core Data stack
-    
+
     var persistentContainer: NSPersistentContainer
 
     init(persistentContainer: NSPersistentContainer) {
@@ -27,17 +26,17 @@ class CoreDataRepository<RepositoryObject>: Repository
     }
 
     func insert(item: RepositoryObject) throws {
-        persistentContainer.viewContext.insert(item.toStorable(with: persistentContainer.viewContext))
+        persistentContainer.viewContext.insert(item.toStorable(in: persistentContainer.viewContext))
         saveContext()
     }
     
     func update(item: RepositoryObject) throws {
-        try? delete(item: item)
-        try? insert(item: item)
+        try delete(item: item)
+        try insert(item: item)
     }
     
     func delete(item: RepositoryObject) throws {
-        let predicate = NSPredicate(format: "uuid == %@", item.toStorable(with: persistentContainer.viewContext).uuid)
+        let predicate = NSPredicate(format: "uuid == %@", item.toStorable(in: persistentContainer.viewContext).uuid)
         let items = try! getManagedObjects(with: predicate)
 
         persistentContainer.viewContext.delete(items.first!)

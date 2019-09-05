@@ -27,7 +27,7 @@ extension Repository {
 public protocol Entity {
     associatedtype StoreType: Storable
     
-    func toStorable(with context: NSManagedObjectContext) -> StoreType
+    func toStorable(in context: NSManagedObjectContext) -> StoreType
 }
 
 public protocol Storable {
