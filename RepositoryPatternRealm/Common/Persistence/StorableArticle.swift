@@ -29,7 +29,7 @@ class StorableArticle: Object, Storable {
     @objc dynamic var name: String = ""
     @objc dynamic var uuid: String = ""
     
-    var entity: Article
+    var model: Article
     {
         get {
             return Article(price: price, name: name)

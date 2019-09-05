@@ -32,6 +32,6 @@ public protocol Entity {
 public protocol Storable {
     associatedtype EntityObject: Entity
     
-    var entity: EntityObject { get }
+    var model: EntityObject { get }
     var uuid: String { get }
 }

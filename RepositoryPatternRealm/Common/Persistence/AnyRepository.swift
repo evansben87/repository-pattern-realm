@@ -9,7 +9,10 @@
 import Foundation
 import RealmSwift
 
-class AnyRepository<RepositoryObject: Entity>: Repository {
+class AnyRepository<RepositoryObject>: Repository
+        where RepositoryObject: Entity,
+        RepositoryObject.StoreType: Object {
+    
     typealias RealmObject = RepositoryObject.StoreType
     
     private let realm: Realm
@@ -19,29 +22,29 @@ class AnyRepository<RepositoryObject: Entity>: Repository {
     }
 
     func getAll(where predicate: NSPredicate?) -> [RepositoryObject] {
-        var objects = realm.objects(RealmObject.self as! Object.Type)
+        var objects = realm.objects(RealmObject.self)
 
         if let predicate = predicate {
             objects = objects.filter(predicate)
         }
-        return objects.compactMap{ ($0 as! RealmObject).entity as? RepositoryObject }
+        return objects.compactMap{ ($0).model as? RepositoryObject }
     }
 
     func insert(item: RepositoryObject) throws {
         try realm.write {
-            realm.add(item.toStorable() as! Object)
+            realm.add(item.toStorable())
         }
     }
 
     func update(item: RepositoryObject) throws {
-        try? delete(item: item)
-        try? insert(item: item)
+        try delete(item: item)
+        try insert(item: item)
     }
 
     func delete(item: RepositoryObject) throws {
         try realm.write {
             let predicate = NSPredicate(format: "uuid == %@", item.toStorable().uuid)
-            if let productToDelete = realm.objects(RealmObject.self as! Object.Type)
+            if let productToDelete = realm.objects(RealmObject.self)
                 .filter(predicate).first {
                 realm.delete(productToDelete)
             }
