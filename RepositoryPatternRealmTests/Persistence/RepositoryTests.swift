@@ -10,7 +10,7 @@ import XCTest
 import CoreData
 @testable import RepositoryPatternRealm
 
-class RealmRepositoryTests: XCTestCase {
+class RepositoryTests: XCTestCase {
 
     func test_insert_stores_item_locally() {
         let article = Article(price: 149, name: "Apple Airpods")

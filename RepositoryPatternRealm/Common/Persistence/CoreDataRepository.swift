@@ -21,7 +21,7 @@ class CoreDataRepository<RepositoryObject>: Repository
     }
     
     func getAll(where predicate: NSPredicate?) throws -> [RepositoryObject] {
-        let objects = try! getManagedObjects(with: predicate)
+        let objects = try getManagedObjects(with: predicate)
         return objects.compactMap { $0.model }
     }
 
@@ -37,7 +37,7 @@ class CoreDataRepository<RepositoryObject>: Repository
     
     func delete(item: RepositoryObject) throws {
         let predicate = NSPredicate(format: "uuid == %@", item.toStorable(in: persistentContainer.viewContext).uuid)
-        let items = try! getManagedObjects(with: predicate)
+        let items = try getManagedObjects(with: predicate)
 
         persistentContainer.viewContext.delete(items.first!)
         saveContext()
